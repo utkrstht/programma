@@ -11,7 +11,8 @@ class Portrugeese(App):
         user_input = event.value
         input_widget = event.input
 
-        print(user_input)
+        if user_input in ["qq", "quit", "exit"]:
+            self.exit()
 
         # clear input field once submitted
         input_widget.value = ""
