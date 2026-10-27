@@ -1,7 +1,7 @@
 from textual.app import App, ComposeResult
 from textual.widgets import Input
-from random import choice
 
+from random import choice
 
 # markiplier ref
 class Portrugeese(App):
@@ -17,7 +17,7 @@ class Portrugeese(App):
         if user_input in ["qq", "quit", "exit"]:
             self.exit()
 
-        # clear input field once submitted
+        # Clear input field once submitted
         input_widget.value = ""
 
 if __name__ == "__main__":
