@@ -18,6 +18,14 @@ def groq_init():
         return client
     else:
         # TODO: setup custom class for MissingApiKeyError exception
-        raise ValueError("Please setup API key before attempting to initalize Groq interface")
+        raise ValueError("Please setup API key before attempting to initalize Groq cliwnr")
 
+def groq_list_models(client):
+    if not client:
+        # TODO: setup custom class for MissingClientError exception
+        raise ValueError("Please initalize Groq client before attempting to fetch available models")
     
+    # Just return their programmatic names/ids
+    models = [model.id for model in client.models.list().data]
+
+    return models
