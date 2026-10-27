@@ -1,11 +1,14 @@
 from textual.app import App, ComposeResult
 from textual.widgets import Input
+from random import choice
+
 
 # markiplier ref
 class Portrugeese(App):
     def compose(self) -> ComposeResult:
-        # TODO: random example questions in placeholder (e.g "What is the tech stack of this project?")
-        yield Input(placeholder="Ask anything...")
+        example_queries = ["\"What is the tech stack of this project?\"", "\"Fix broken tests\"", "\"Fix a TODO in the codebase\""]
+
+        yield Input(placeholder=f"Ask anything... {choice(example_queries)}")
 
     def on_input_submitted(self, event: Input.Submitted) -> None:
         user_input = event.value
