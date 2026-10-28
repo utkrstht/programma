@@ -7,8 +7,7 @@ LLM
 - Use OAuth to directly login to providers and get an API key limited to free models
 - Some users may have paid accounts and may want to use their paid models, so allow them to select paid models as well
 - Refactor providers into providers folder with seperate files for each provider accessed via a unified module
+- Check out Vector Databases (RAG) for huge contexts
 TUI
 - Add proper structure
 - Make it look goody good
-
-Currently the 
