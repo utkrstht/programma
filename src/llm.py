@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 # TESTING
 load_dotenv()
 
-def groq_init():
+def groq_init() -> Groq:
     # I am not sure if either passing the API key to groq_init() 
     # or directly fetching the API key via environ is better
     # TODO: change this after implementing proper API key processing
@@ -18,9 +18,9 @@ def groq_init():
         return client
     else:
         # TODO: setup custom class for MissingApiKeyError exception
-        raise ValueError("Please setup API key before attempting to initalize Groq cliwnr")
+        raise ValueError("Please setup API key before attempting to initalize Groq clientr")
 
-def groq_list_models(client):
+def groq_list_models(client: Groq | None) -> list[str]:
     if not client:
         # TODO: setup custom class for MissingClientError exception
         raise ValueError("Please initalize Groq client before attempting to fetch available models")
@@ -31,7 +31,7 @@ def groq_list_models(client):
 
     return models
 
-def groq_send_message(client, model_id, message):
+def groq_send_message(client: Groq | None, model_id: str, message: str) -> str | None: 
     if not client:
         # TODO: use MissingClientError here when implemented
         raise ValueError("Please initialize Groq client before attempting to send messages to a model")
@@ -51,4 +51,4 @@ def groq_send_message(client, model_id, message):
     except NotFoundError as e:
         # TODO: setup custom class InvalidModelIdError exception
         raise ValueError(f"Please specific a valid model, \"{model_id}\" is not valid.")
-    return completion.choices.message.content
+    return completion.choices[0].message.content
