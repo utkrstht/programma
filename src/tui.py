@@ -3,7 +3,7 @@ from textual.widgets import Input, Select
 from textual.containers import Vertical
 from random import choice
 
-from llm import groq_init, groq_list_models
+from providers.groq import groq_init, groq_list_models
 
 # markiplier ref
 class Portrugeese(App):
