@@ -1,7 +1,7 @@
 # This will serve an example of the structure for future provider implementation
 # groq_init(), groq_send_message(), groq_list_models(free/paid/all), etc 
 
-from groq import Groq
+from groq import Groq, NotFoundError
 from os import environ
 # TESTING
 from dotenv import load_dotenv
@@ -41,11 +41,14 @@ def groq_send_message(client, model_id, message):
 
     # TODO: add streaming support
     # TODO: context window
-    completion = client.chat.completions.create(
-        messages=[
-            {"role":"user", "content":message}
-        ],
-        model=model_id
-    )
-
+    try:
+        completion = client.chat.completions.create(
+            messages=[
+                {"role":"user", "content":message}
+            ],
+            model=model_id
+        )
+    except NotFoundError as e:
+        # TODO: setup custom class InvalidModelIdError exception
+        raise ValueError(f"Please specific a valid model, \"{model_id}\" is not valid.")
     return completion.choices.message.content
