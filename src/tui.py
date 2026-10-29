@@ -30,6 +30,12 @@ class Portrugeese(App):
                 yield Input(placeholder=f"Ask anything... {choice(example_queries)}", id='chat-input')
                 yield Static(f"\n{self.active_model}", id='model-label')
 
+    def on_select_changed(self, event: Select.Changed) -> None:
+        if event.select.id != "model-menu" or event.value is Select.BLANK:
+            return
+        self.active_model = str(event.value)
+        self.query_one('#model-label', Static).update(f"\n{self.active_model}")
+
     def on_input_submitted(self, event: Input.Submitted) -> None:
         user_input = event.value
         input_widget = event.input
