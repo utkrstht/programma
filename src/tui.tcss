@@ -1,0 +1,7 @@
+Vertical {
+    height: 100%;
+}
+
+#chat-input {
+    dock: bottom;
+}
