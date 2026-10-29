@@ -1,5 +1,5 @@
 from textual.app import App, ComposeResult
-from textual.widgets import Input, Select
+from textual.widgets import Input, Select, Static
 from textual.containers import Vertical
 from random import choice
 
@@ -23,9 +23,12 @@ class Portrugeese(App):
 
         models = groq_list_models(self.client)
 
-        with Vertical():
+        with Vertical(id='main'):
             yield Select.from_values(models, value=self.active_model, allow_blank=False, id='model-menu')
-            yield Input(placeholder=f"Ask anything... {choice(example_queries)}", id='chat-input')
+
+            with Vertical(id='prompt-box'):
+                yield Input(placeholder=f"Ask anything... {choice(example_queries)}", id='chat-input')
+                yield Static(f"\n{self.active_model}", id='model-label')
 
     def on_input_submitted(self, event: Input.Submitted) -> None:
         user_input = event.value

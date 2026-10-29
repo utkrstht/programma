@@ -1,7 +1,25 @@
-Vertical {
+#main {
     height: 100%;
 }
 
-#chat-input {
+#prompt-box {
     dock: bottom;
+    height: auto;
+    border: tall $border-blurred;
+    padding: 0 1;
+}
+
+#prompt-box:focus-within {
+    border: tall $border;
+}
+
+#chat-input {
+    border: none;
+    height: 1;
+    padding: 0;
+    background: transparent;
+}
+
+#model-label {
+    height: 2;
 }
