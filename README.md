@@ -8,6 +8,7 @@ LLM
 - Some users may have paid accounts and may want to use their paid models, so allow them to select paid models as well
 - Refactor providers into providers folder with seperate files for each provider accessed via a unified module
 - Check out Vector Databases (RAG) for huge contexts
+- Really small token footprint
 
 TUI
 - Add proper structure
